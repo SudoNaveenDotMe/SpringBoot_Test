@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.DepartmentDTO;
 import com.example.demo.service.DepartmentService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +17,8 @@ public class DepartmentController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public DepartmentDTO saveDepartment() {
-        return departmentService.saveDepartment();
+    public DepartmentDTO saveDepartment(@RequestBody DepartmentDTO departmentDTO) {
+        return departmentService.saveDepartment(departmentDTO);
     }
 
 

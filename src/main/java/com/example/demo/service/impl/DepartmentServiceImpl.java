@@ -22,10 +22,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public DepartmentDTO saveDepartment() {
-        log.info("Execute method saveDepartment");
+    public DepartmentDTO saveDepartment(DepartmentDTO departmentDTO) {
+        log.info("Execute method saveDepartment" + departmentDTO);
 
-        Department department = new Department();
+        /*Department department = new Department();
         department.setDepartmentName("HR");
         department.setDepartmentLocation("Colombo");
 
@@ -36,6 +36,19 @@ public class DepartmentServiceImpl implements DepartmentService {
         responseDepartmentDTO.setDepartmentLocation(dep.getDepartmentLocation());
 
         log.info("Saved User Returned");
+        return responseDepartmentDTO;*/
+
+        Department department = new Department();
+        department.setDepartmentName(departmentDTO.getDepartmentName());
+        department.setDepartmentLocation(departmentDTO.getDepartmentLocation());
+
+        Department dep = departmentRepository.save(department);
+        DepartmentDTO responseDepartmentDTO = new DepartmentDTO();
+
+        responseDepartmentDTO.setDepartmentName(dep.getDepartmentName());
+        responseDepartmentDTO.setDepartmentLocation(dep.getDepartmentLocation());
+
+        log.info("Saved Department Returned");
         return responseDepartmentDTO;
     }
 
